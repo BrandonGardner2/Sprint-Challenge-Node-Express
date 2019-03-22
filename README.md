@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+* Middleware and Router
+
 - [ ] Describe Middleware?
+
+* Middleware gets access to all of the requests as they pass through express and can alter them as needed or pass them through to the next middleware.
 
 - [ ] Describe a Resource?
 
+* A resource is something that the server can operate on using methods such as CRUD.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+* Status 200
+
 - [ ] How can we partition our application into sub-applications?
+
+* We can compartmentalize our code much like in React, using routers, and putting things in containers that make sense.
 
 ## Project Setup
 
