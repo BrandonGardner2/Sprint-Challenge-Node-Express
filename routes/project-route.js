@@ -32,24 +32,22 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  if (req.body.description && req.body.notes && req.body.project_id) {
+  if (req.body.description && req.body.name) {
     const { id } = req.params;
     try {
       const updated = await db.update(id, req.body);
-      if (count) {
+      if (updated) {
         res.status(200).json(updated);
       } else {
-        res.status(404).json({ message: "The action could not be located." });
+        res.status(404).json({ message: "The project could not be located." });
       }
     } catch (error) {
       res
         .status(500)
-        .json({ message: "Something went wrong updating the action." });
+        .json({ message: "Something went wrong updating the project." });
     }
   } else {
-    res
-      .status(400)
-      .json({ message: "Please provide a description, id and notes." });
+    res.status(400).json({ message: "Please provide a description and name." });
   }
 });
 
