@@ -17,19 +17,17 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  if (req.body.description && req.body.notes && req.body.project_id) {
+  if (req.body.description && req.body.name) {
     try {
-      const action = await db.insert(req.body);
-      res.status(200).json(action);
+      const project = await db.insert(req.body);
+      res.status(200).json(project);
     } catch (error) {
       res
         .status(500)
-        .json({ message: "Something went wrong trying to add the action." });
+        .json({ message: "Something went wrong trying to add the project." });
     }
   } else {
-    res
-      .status(400)
-      .json({ message: "Please provide a description, id and notes." });
+    res.status(400).json({ message: "Please provide a description and name." });
   }
 });
 
