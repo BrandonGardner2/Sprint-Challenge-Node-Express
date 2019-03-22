@@ -16,6 +16,24 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const actions = await db.getProjectActions(id);
+    if (actions.length > 0) {
+      res.status(200).json(actions);
+    } else {
+      res
+        .status(404)
+        .json({ message: "There were no actions found for this project." });
+    }
+  } catch (error) {
+    res.status(500).json({
+      Message: "There was an error retrieving the actions for this project."
+    });
+  }
+});
+
 router.post("/", async (req, res) => {
   if (req.body.description && req.body.name) {
     try {
